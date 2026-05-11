@@ -30,15 +30,23 @@ src/
       br/ifgoiano/grafo/
 ```
 
-## Sugestão de fluxo TDD
+## Regras do projeto
+
+- O grafo e direcionado.
+- Um laco conta como grau 1.
+- Arestas paralelas so sao consideradas quando nao estao no mesmo sentido.
+- A identificacao dos vertices e feita por `id`.
+- Nao e permitido repetir `id` de vertice; vertices com o mesmo `id` devem ser considerados o mesmo vertice.
+
+## Sugestao de fluxo TDD
 
 1. Escreva um teste para o comportamento do grafo.
 2. Rode os testes e veja falhar.
-3. Implemente o mínimo para passar.
+3. Implemente o minimo para passar.
 4. Refatore mantendo os testes verdes.
 
-## Próximos passos
+## Proximos passos
 
-- Implementar grafo direcionado ou não direcionado
+- Implementar as regras de grafo direcionado
 - Adicionar pesos nas arestas, se o trabalho pedir
 - Criar algoritmos como BFS, DFS, Dijkstra ou Prim, conforme a disciplina

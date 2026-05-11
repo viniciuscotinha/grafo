@@ -1,5 +1,6 @@
 package br.ifgoiano.grafo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Grafo {
@@ -7,10 +8,19 @@ public class Grafo {
     public List<Aresta> Arestas;
     
     public Grafo() {
+        this.Arestas = new ArrayList<Aresta>();
+        this.Vertices = new ArrayList<Vertice>();
     }
 
-    public void adicionarVertice(long id, String texto) {
-        Vertices.add(new Vertice(id, texto));
+    public Vertice adicionarVertice(long id, String texto) {
+        Vertice vertice = this.pegarVertice(id);
+        if(vertice == null) {
+            vertice = new Vertice(id, texto);
+            Vertices.add(vertice);
+            return vertice;
+        } else {
+            return vertice;
+        }
     }
 
     public void adicionarAresta(Vertice origem, Vertice destino, int peso, String texto) {
@@ -36,5 +46,13 @@ public class Grafo {
     public void mostrarDOT() {
 
     }
-    
+
+    public Vertice pegarVertice(long id) {
+        for(int i = 0; i < Vertices.size(); i++) {
+            if (id == Vertices.get(i).id) {
+                return Vertices.get(i);
+            }
+        }
+        return null;
+    }
 }

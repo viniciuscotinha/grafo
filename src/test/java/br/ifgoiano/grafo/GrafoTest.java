@@ -15,6 +15,7 @@ class GrafoTest {
     void deveAdicionarUmVertice() {
         Grafo g = new Grafo();
         g.adicionarVertice(1, "texto1");
+        assertEquals(g.Vertices.get(0).id, 1);
     }
 
 }

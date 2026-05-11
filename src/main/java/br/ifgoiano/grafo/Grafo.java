@@ -1,18 +1,20 @@
 package br.ifgoiano.grafo;
 
+import java.util.List;
+
 public class Grafo {
-    public Vertice[] Vertices;
-    public Aresta[] Arestas;
+    public List<Vertice> Vertices;
+    public List<Aresta> Arestas;
     
     public Grafo() {
     }
 
-    public void adicionarVertice() {
-
+    public void adicionarVertice(long id, String texto) {
+        Vertices.add(new Vertice(id, texto));
     }
 
-    public void adicionarAresta() {
-
+    public void adicionarAresta(Vertice origem, Vertice destino, int peso, String texto) {
+        Arestas.add(new Aresta(origem, destino, peso, texto));
     }
 
     public int contarLacos() {
@@ -32,7 +34,7 @@ public class Grafo {
     }
 
     public void mostrarDOT() {
-        
+
     }
     
 }

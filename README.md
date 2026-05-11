@@ -24,10 +24,10 @@ mvn test
 src/
   main/
     java/
-      br/ufg/grafo/
+      br/ifgoiano/grafo/
   test/
     java/
-      br/ufg/grafo/
+      br/ifgoiano/grafo/
 ```
 
 ## Sugestão de fluxo TDD

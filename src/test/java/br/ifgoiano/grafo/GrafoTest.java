@@ -11,9 +11,10 @@ import org.junit.jupiter.api.DisplayName;
 class GrafoTest {
 
     @Test
-    @DisplayName("Teste123")
+    @DisplayName("Adicionar um vertice")
     void deveAdicionarUmVertice() {
-
+        Grafo g = new Grafo();
+        g.adicionarVertice(1, "texto1");
     }
 
 }

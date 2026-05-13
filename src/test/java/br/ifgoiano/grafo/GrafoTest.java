@@ -1,6 +1,8 @@
 package br.ifgoiano.grafo;
 
 import org.junit.jupiter.api.Test;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -306,5 +308,100 @@ class GrafoTest {
         g.adicionarOuAtualizarAresta(v5, v1, 1, "a4");
 
         assertEquals(4, g.grauVertice(1));
+    }
+
+    @Test
+    @DisplayName("Mostrar caminho exibe sequencia entre origem e destino")
+    void mostrarCaminhoExibeSequenciaEntreOrigemEDestino() {
+        Grafo g = new Grafo();
+        Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
+        Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
+        Vertice v3 = g.adicionarOuAtualizarVertice(3, "texto3");
+        Vertice v4 = g.adicionarOuAtualizarVertice(4, "texto4");
+        g.adicionarOuAtualizarAresta(v1, v2, 5, "a1");
+        g.adicionarOuAtualizarAresta(v2, v3, 7, "a2");
+        g.adicionarOuAtualizarAresta(v3, v4, 9, "a3");
+
+        ByteArrayOutputStream saida = new ByteArrayOutputStream();
+        PrintStream original = System.out;
+        System.setOut(new PrintStream(saida));
+
+        try {
+            g.mostrarCaminho(1, 4);
+        } finally {
+            System.setOut(original);
+        }
+
+        assertEquals("1 -5-> 2 -7-> 3 -9-> 4", saida.toString().trim());
+    }
+
+    @Test
+    @DisplayName("Mostrar caminho avisa quando nao existe rota")
+    void mostrarCaminhoAvisaQuandoNaoExisteRota() {
+        Grafo g = new Grafo();
+        Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
+        Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
+        Vertice v3 = g.adicionarOuAtualizarVertice(3, "texto3");
+        g.adicionarOuAtualizarAresta(v1, v2, 1, "a1");
+
+        ByteArrayOutputStream saida = new ByteArrayOutputStream();
+        PrintStream original = System.out;
+        System.setOut(new PrintStream(saida));
+
+        try {
+            g.mostrarCaminho(1, 3);
+        } finally {
+            System.setOut(original);
+        }
+
+        assertEquals("Nao existe caminho", saida.toString().trim());
+    }
+
+    @Test
+    @DisplayName("Mostrar caminho menor peso escolhe rota de menor custo total")
+    void mostrarCaminhoMenorPesoEscolheRotaDeMenorCustoTotal() {
+        Grafo g = new Grafo();
+        Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
+        Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
+        Vertice v3 = g.adicionarOuAtualizarVertice(3, "texto3");
+        Vertice v4 = g.adicionarOuAtualizarVertice(4, "texto4");
+        g.adicionarOuAtualizarAresta(v1, v2, 10, "a1");
+        g.adicionarOuAtualizarAresta(v1, v3, 2, "a2");
+        g.adicionarOuAtualizarAresta(v3, v4, 2, "a3");
+        g.adicionarOuAtualizarAresta(v4, v2, 2, "a4");
+
+        ByteArrayOutputStream saida = new ByteArrayOutputStream();
+        PrintStream original = System.out;
+        System.setOut(new PrintStream(saida));
+
+        try {
+            g.mostrarCaminhoMenorPeso(1, 2);
+        } finally {
+            System.setOut(original);
+        }
+
+        assertEquals("1 -2-> 3 -2-> 4 -2-> 2", saida.toString().trim());
+    }
+
+    @Test
+    @DisplayName("Mostrar caminho menor peso avisa quando nao existe rota")
+    void mostrarCaminhoMenorPesoAvisaQuandoNaoExisteRota() {
+        Grafo g = new Grafo();
+        Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
+        Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
+        Vertice v3 = g.adicionarOuAtualizarVertice(3, "texto3");
+        g.adicionarOuAtualizarAresta(v1, v2, 1, "a1");
+
+        ByteArrayOutputStream saida = new ByteArrayOutputStream();
+        PrintStream original = System.out;
+        System.setOut(new PrintStream(saida));
+
+        try {
+            g.mostrarCaminhoMenorPeso(1, 3);
+        } finally {
+            System.setOut(original);
+        }
+
+        assertEquals("Nao existe caminho", saida.toString().trim());
     }
 }

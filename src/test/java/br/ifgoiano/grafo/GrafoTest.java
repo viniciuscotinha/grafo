@@ -375,4 +375,76 @@ class GrafoTest {
         );
     }
 
+    @Test
+    @DisplayName("Mostrar DOT funciona com grafo vazio")
+    void mostrarDOTFuncionaComGrafoVazio() {
+        Grafo g = new Grafo();
+
+        assertEquals(
+            "digraph Grafo {\n" +
+            "}",
+            g.mostrarDOT()
+        );
+    }
+
+    @Test
+    @DisplayName("Mostrar DOT representa arestas nos dois sentidos")
+    void mostrarDOTRepresentaArestasNosDoisSentidos() {
+        Grafo g = new Grafo();
+        Vertice v1 = g.adicionarOuAtualizarVertice(1, "A");
+        Vertice v2 = g.adicionarOuAtualizarVertice(2, "B");
+        g.adicionarOuAtualizarAresta(v1, v2, "ida");
+        g.adicionarOuAtualizarAresta(v2, v1, "volta");
+
+        assertEquals(
+            "digraph Grafo {\n" +
+            "    1 [label=\"A\"];\n" +
+            "    2 [label=\"B\"];\n" +
+            "    1 -> 2 [label=\"ida\"];\n" +
+            "    2 -> 1 [label=\"volta\"];\n" +
+            "}",
+            g.mostrarDOT()
+        );
+    }
+
+    @Test
+    @DisplayName("Mostrar DOT representa laco")
+    void mostrarDOTRepresentaLaco() {
+        Grafo g = new Grafo();
+        Vertice v1 = g.adicionarOuAtualizarVertice(1, "Central");
+        g.adicionarOuAtualizarAresta(v1, v1, "auto");
+
+        assertEquals(
+            "digraph Grafo {\n" +
+            "    1 [label=\"Central\"];\n" +
+            "    1 -> 1 [label=\"auto\"];\n" +
+            "}",
+            g.mostrarDOT()
+        );
+    }
+
+    @Test
+    @DisplayName("Mostrar DOT representa varios vertices e arestas")
+    void mostrarDOTRepresentaVariosVerticesEArestas() {
+        Grafo g = new Grafo();
+        Vertice v1 = g.adicionarOuAtualizarVertice(1, "Inicio");
+        Vertice v2 = g.adicionarOuAtualizarVertice(2, "Meio");
+        Vertice v3 = g.adicionarOuAtualizarVertice(3, "Fim");
+        g.adicionarOuAtualizarAresta(v1, v2, "passo1");
+        g.adicionarOuAtualizarAresta(v2, v3, "passo2");
+        g.adicionarOuAtualizarAresta(v1, v3, "atalho");
+
+        assertEquals(
+            "digraph Grafo {\n" +
+            "    1 [label=\"Inicio\"];\n" +
+            "    2 [label=\"Meio\"];\n" +
+            "    3 [label=\"Fim\"];\n" +
+            "    1 -> 2 [label=\"passo1\"];\n" +
+            "    2 -> 3 [label=\"passo2\"];\n" +
+            "    1 -> 3 [label=\"atalho\"];\n" +
+            "}",
+            g.mostrarDOT()
+        );
+    }
+
 }

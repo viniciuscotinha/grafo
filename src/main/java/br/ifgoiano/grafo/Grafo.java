@@ -39,15 +39,43 @@ public class Grafo {
 
     
     public int contarLacos() {
-        return 0;
+        int total = 0;
+        for (int i = 0; i < Arestas.size(); i++) {
+            if (Arestas.get(i).origem == Arestas.get(i).destino) {
+                total++;
+            }
+        }
+        return total;
     }
 
     public boolean ehCompleto() {
-        return false;
+        for (int i = 0; i < Vertices.size(); i++) {
+            for (int j = 0; j < Vertices.size(); j++) {
+                if (i != j) {
+                    Aresta aresta = pegarAresta(Vertices.get(i), Vertices.get(j));
+                    if (aresta == null) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
     
-    public int grauVertice() {
-        return 0;
+    public int grauVertice(long id) {
+        Vertice vertice = this.pegarVertice(id);
+        if (vertice == null) {
+            return 0;
+        }
+
+        int grau = 0;
+        for (int i = 0; i < Arestas.size(); i++) {
+            Aresta aresta = Arestas.get(i);
+            if (aresta.origem == vertice || aresta.destino == vertice) {
+                grau++;
+            }
+        }
+        return grau;
     }
 
     public void mostrarCaminho() {

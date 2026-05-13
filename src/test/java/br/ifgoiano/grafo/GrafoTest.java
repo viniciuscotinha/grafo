@@ -60,4 +60,188 @@ class GrafoTest {
             () -> assertEquals("texto2", g.Arestas.get(0).texto)
         );
     }
+
+    @Test
+    @DisplayName("Contar zero lacos")
+    void deveContarZeroLacos() {
+        Grafo g = new Grafo();
+        Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
+        Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
+        g.adicionarOuAtualizarAresta(v1, v2, 5, "a1");
+
+        assertEquals(0, g.contarLacos());
+    }
+
+    @Test
+    @DisplayName("Contar um laco")
+    void deveContarUmLaco() {
+        Grafo g = new Grafo();
+        Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
+        Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
+        g.adicionarOuAtualizarAresta(v1, v1, 5, "a1");
+        g.adicionarOuAtualizarAresta(v1, v2, 3, "a2");
+
+        assertEquals(1, g.contarLacos());
+    }
+
+    @Test
+    @DisplayName("Contar tres lacos")
+    void deveContarTresLacos() {
+        Grafo g = new Grafo();
+        Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
+        Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
+        Vertice v3 = g.adicionarOuAtualizarVertice(3, "texto3");
+        g.adicionarOuAtualizarAresta(v1, v1, 5, "a1");
+        g.adicionarOuAtualizarAresta(v2, v2, 3, "a2");
+        g.adicionarOuAtualizarAresta(v3, v3, 7, "a3");
+
+        assertEquals(3, g.contarLacos());
+    }
+
+    @Test
+    @DisplayName("Grafo vazio e completo")
+    void grafoVazioNaoECompleto() {
+        Grafo g = new Grafo();
+
+        assertTrue(g.ehCompleto());
+    }
+
+    @Test
+    @DisplayName("Grafo com um vertice e completo")
+    void grafoComUmVerticeECompleto() {
+        Grafo g = new Grafo();
+        g.adicionarOuAtualizarVertice(1, "texto1");
+
+        assertTrue(g.ehCompleto());
+    }
+
+    @Test
+    @DisplayName("Dois vertices sem aresta nao formam grafo completo")
+    void doisVerticesSemArestaNaoFormamGrafoCompleto() {
+        Grafo g = new Grafo();
+        g.adicionarOuAtualizarVertice(1, "texto1");
+        g.adicionarOuAtualizarVertice(2, "texto2");
+
+        assertFalse(g.ehCompleto());
+    }
+
+    @Test
+    @DisplayName("Dois vertices com uma direcao so nao formam grafo completo")
+    void doisVerticesComUmaDirecaoSoNaoFormamGrafoCompleto() {
+        Grafo g = new Grafo();
+        Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
+        Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
+        g.adicionarOuAtualizarAresta(v1, v2, 1, "a1");
+
+        assertFalse(g.ehCompleto());
+    }
+
+    @Test
+    @DisplayName("Dois vertices com duas direcoes formam grafo completo")
+    void doisVerticesComDuasDirecoesFormamGrafoCompleto() {
+        Grafo g = new Grafo();
+        Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
+        Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
+        g.adicionarOuAtualizarAresta(v1, v2, 1, "a1");
+        g.adicionarOuAtualizarAresta(v2, v1, 2, "a2");
+
+        assertTrue(g.ehCompleto());
+    }
+
+    @Test
+    @DisplayName("Tres vertices faltando uma aresta nao formam grafo completo")
+    void tresVerticesFaltandoUmaArestaNaoFormamGrafoCompleto() {
+        Grafo g = new Grafo();
+        Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
+        Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
+        Vertice v3 = g.adicionarOuAtualizarVertice(3, "texto3");
+        g.adicionarOuAtualizarAresta(v1, v2, 1, "a1");
+        g.adicionarOuAtualizarAresta(v2, v1, 2, "a2");
+        g.adicionarOuAtualizarAresta(v1, v3, 3, "a3");
+        g.adicionarOuAtualizarAresta(v3, v1, 4, "a4");
+        g.adicionarOuAtualizarAresta(v2, v3, 5, "a5");
+
+        assertFalse(g.ehCompleto());
+    }
+
+    @Test
+    @DisplayName("Tres vertices com lacos mas sem ligacoes completas nao formam grafo completo")
+    void tresVerticesComLacosMasSemLigacoesCompletasNaoFormamGrafoCompleto() {
+        Grafo g = new Grafo();
+        Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
+        Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
+        Vertice v3 = g.adicionarOuAtualizarVertice(3, "texto3");
+        g.adicionarOuAtualizarAresta(v1, v1, 1, "a1");
+        g.adicionarOuAtualizarAresta(v2, v2, 2, "a2");
+        g.adicionarOuAtualizarAresta(v3, v3, 3, "a3");
+
+        assertFalse(g.ehCompleto());
+    }
+
+    @Test
+    @DisplayName("Tres vertices com todas as ligacoes entre diferentes formam grafo completo")
+    void tresVerticesComTodasAsLigacoesEntreDiferentesFormamGrafoCompleto() {
+        Grafo g = new Grafo();
+        Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
+        Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
+        Vertice v3 = g.adicionarOuAtualizarVertice(3, "texto3");
+        g.adicionarOuAtualizarAresta(v1, v2, 1, "a1");
+        g.adicionarOuAtualizarAresta(v2, v1, 2, "a2");
+        g.adicionarOuAtualizarAresta(v1, v3, 3, "a3");
+        g.adicionarOuAtualizarAresta(v3, v1, 4, "a4");
+        g.adicionarOuAtualizarAresta(v2, v3, 5, "a5");
+        g.adicionarOuAtualizarAresta(v3, v2, 6, "a6");
+
+        assertTrue(g.ehCompleto());
+    }
+
+    @Test
+    @DisplayName("Arestas repetidas nao compensam aresta faltando no grafo completo")
+    void arestasRepetidasNaoCompensamArestaFaltandoNoGrafoCompleto() {
+        Grafo g = new Grafo();
+        Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
+        Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
+        Vertice v3 = g.adicionarOuAtualizarVertice(3, "texto3");
+        g.adicionarOuAtualizarAresta(v1, v2, 1, "a1");
+        g.adicionarOuAtualizarAresta(v1, v2, 9, "a1 atualizado");
+        g.adicionarOuAtualizarAresta(v2, v1, 2, "a2");
+        g.adicionarOuAtualizarAresta(v1, v3, 3, "a3");
+        g.adicionarOuAtualizarAresta(v3, v1, 4, "a4");
+
+        assertFalse(g.ehCompleto());
+    }
+
+    @Test
+    @DisplayName("Grau de vertice soma arestas de entrada e saida")
+    void grauDoVerticeSomaEntradasESaidas() {
+        Grafo g = new Grafo();
+        Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
+        Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
+        Vertice v3 = g.adicionarOuAtualizarVertice(3, "texto3");
+        g.adicionarOuAtualizarAresta(v1, v2, 1, "a1");
+        g.adicionarOuAtualizarAresta(v2, v1, 1, "a2");
+        g.adicionarOuAtualizarAresta(v3, v1, 1, "a3");
+
+        assertEquals(3, g.grauVertice(1));
+    }
+
+    @Test
+    @DisplayName("Laco conta como grau um")
+    void lacoContaComoGrauUm() {
+        Grafo g = new Grafo();
+        Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
+        Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
+        g.adicionarOuAtualizarAresta(v1, v1, 1, "a1");
+        g.adicionarOuAtualizarAresta(v2, v1, 1, "a2");
+
+        assertEquals(2, g.grauVertice(1));
+    }
+
+    @Test
+    @DisplayName("Vertice inexistente tem grau zero")
+    void verticeInexistenteTemGrauZero() {
+        Grafo g = new Grafo();
+
+        assertEquals(0, g.grauVertice(99));
+    }
 }

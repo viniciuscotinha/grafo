@@ -14,7 +14,7 @@ import org.junit.jupiter.api.DisplayName;
 class GrafoTest {
 
     @Test
-    @DisplayName("Adicionar um vertice")
+    @DisplayName("Adicionar um vértice")
     void deveAdicionarUmVertice() {
         Grafo g = new Grafo();
         g.adicionarOuAtualizarVertice(1, "texto1");
@@ -22,7 +22,7 @@ class GrafoTest {
     }
 
     @Test
-    @DisplayName("Adicionar um vertice e adicionar outro de mesmo id")
+    @DisplayName("Adicionar um vértice e adicionar outro de mesmo id")
     void deveAdicionarMesmoVertice() {
         Grafo g = new Grafo();
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
@@ -48,7 +48,7 @@ class GrafoTest {
     }
 
     @Test
-    @DisplayName("Adicionar uma aresta e adicionar outro de mesmo jeito")
+    @DisplayName("Adicionar uma aresta e adicionar outra do mesmo jeito")
     void deveAdicionarMesmoAresta() {
         Grafo g = new Grafo();
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
@@ -62,7 +62,7 @@ class GrafoTest {
     }
 
     @Test
-    @DisplayName("Contar zero lacos")
+    @DisplayName("Contar zero laços")
     void deveContarZeroLacos() {
         Grafo g = new Grafo();
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
@@ -73,7 +73,7 @@ class GrafoTest {
     }
 
     @Test
-    @DisplayName("Contar um laco")
+    @DisplayName("Contar um laço")
     void deveContarUmLaco() {
         Grafo g = new Grafo();
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
@@ -85,7 +85,7 @@ class GrafoTest {
     }
 
     @Test
-    @DisplayName("Contar tres lacos")
+    @DisplayName("Contar três laços")
     void deveContarTresLacos() {
         Grafo g = new Grafo();
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
@@ -99,7 +99,7 @@ class GrafoTest {
     }
 
     @Test
-    @DisplayName("Grafo vazio e completo")
+    @DisplayName("Grafo vazio é completo")
     void grafoVazioNaoECompleto() {
         Grafo g = new Grafo();
 
@@ -107,7 +107,7 @@ class GrafoTest {
     }
 
     @Test
-    @DisplayName("Grafo com um vertice e completo")
+    @DisplayName("Grafo com um vértice é completo")
     void grafoComUmVerticeECompleto() {
         Grafo g = new Grafo();
         g.adicionarOuAtualizarVertice(1, "texto1");
@@ -116,7 +116,7 @@ class GrafoTest {
     }
 
     @Test
-    @DisplayName("Dois vertices sem aresta nao formam grafo completo")
+    @DisplayName("Dois vértices sem aresta não formam grafo completo")
     void doisVerticesSemArestaNaoFormamGrafoCompleto() {
         Grafo g = new Grafo();
         g.adicionarOuAtualizarVertice(1, "texto1");
@@ -126,7 +126,7 @@ class GrafoTest {
     }
 
     @Test
-    @DisplayName("Dois vertices com uma direcao so nao formam grafo completo")
+    @DisplayName("Dois vértices com uma direção só não formam grafo completo")
     void doisVerticesComUmaDirecaoSoNaoFormamGrafoCompleto() {
         Grafo g = new Grafo();
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
@@ -137,7 +137,7 @@ class GrafoTest {
     }
 
     @Test
-    @DisplayName("Dois vertices com duas direcoes formam grafo completo")
+    @DisplayName("Dois vértices com duas direções formam grafo completo")
     void doisVerticesComDuasDirecoesFormamGrafoCompleto() {
         Grafo g = new Grafo();
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
@@ -149,7 +149,7 @@ class GrafoTest {
     }
 
     @Test
-    @DisplayName("Tres vertices faltando uma aresta nao formam grafo completo")
+    @DisplayName("Três vértices faltando uma aresta não formam grafo completo")
     void tresVerticesFaltandoUmaArestaNaoFormamGrafoCompleto() {
         Grafo g = new Grafo();
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
@@ -165,7 +165,7 @@ class GrafoTest {
     }
 
     @Test
-    @DisplayName("Tres vertices com lacos mas sem ligacoes completas nao formam grafo completo")
+    @DisplayName("Três vértices com laços mas sem ligações completas não formam grafo completo")
     void tresVerticesComLacosMasSemLigacoesCompletasNaoFormamGrafoCompleto() {
         Grafo g = new Grafo();
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
@@ -179,7 +179,7 @@ class GrafoTest {
     }
 
     @Test
-    @DisplayName("Tres vertices com todas as ligacoes entre diferentes formam grafo completo")
+    @DisplayName("Três vértices com todas as ligações entre diferentes formam grafo completo")
     void tresVerticesComTodasAsLigacoesEntreDiferentesFormamGrafoCompleto() {
         Grafo g = new Grafo();
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
@@ -196,7 +196,7 @@ class GrafoTest {
     }
 
     @Test
-    @DisplayName("Arestas repetidas nao compensam aresta faltando no grafo completo")
+    @DisplayName("Arestas repetidas não compensam aresta faltando no grafo completo")
     void arestasRepetidasNaoCompensamArestaFaltandoNoGrafoCompleto() {
         Grafo g = new Grafo();
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
@@ -212,7 +212,7 @@ class GrafoTest {
     }
 
     @Test
-    @DisplayName("Grau de vertice soma arestas de entrada e saida")
+    @DisplayName("Grau de vértice soma arestas de entrada e saída")
     void grauDoVerticeSomaEntradasESaidas() {
         Grafo g = new Grafo();
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
@@ -226,7 +226,7 @@ class GrafoTest {
     }
 
     @Test
-    @DisplayName("Grau de entrada conta arestas que chegam ao vertice")
+    @DisplayName("Grau de entrada conta arestas que chegam ao vértice")
     void grauDeEntradaContaArestasQueChegamAoVertice() {
         Grafo g = new Grafo();
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
@@ -240,7 +240,7 @@ class GrafoTest {
     }
 
     @Test
-    @DisplayName("Grau de saida conta arestas que saem do vertice")
+    @DisplayName("Grau de saída conta arestas que saem do vértice")
     void grauDeSaidaContaArestasQueSaemDoVertice() {
         Grafo g = new Grafo();
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
@@ -254,7 +254,7 @@ class GrafoTest {
     }
 
     @Test
-    @DisplayName("Laco conta como grau um no grau total")
+    @DisplayName("Laço conta como grau um no grau total")
     void lacoContaComoGrauUmNoGrauTotal() {
         Grafo g = new Grafo();
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
@@ -266,7 +266,7 @@ class GrafoTest {
     }
 
     @Test
-    @DisplayName("Laco conta na entrada e na saida")
+    @DisplayName("Laço conta na entrada e na saída")
     void lacoContaNaEntradaENaSaida() {
         Grafo g = new Grafo();
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
@@ -280,7 +280,7 @@ class GrafoTest {
     }
 
     @Test
-    @DisplayName("Vertice inexistente tem grau zero")
+    @DisplayName("Vértice inexistente tem grau zero")
     void verticeInexistenteTemGrauZero() {
         Grafo g = new Grafo();
 
@@ -292,7 +292,7 @@ class GrafoTest {
     }
 
     @Test
-    @DisplayName("Vertice pode ter grau maior que tres")
+    @DisplayName("Vértice pode ter grau maior que três")
     void verticePodeTerGrauMaiorQueTres() {
         Grafo g = new Grafo();
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
@@ -309,7 +309,7 @@ class GrafoTest {
     }
 
     @Test
-    @DisplayName("Mostrar caminho exibe sequencia entre origem e destino")
+    @DisplayName("Mostrar caminho exibe sequência entre origem e destino")
     void mostrarCaminhoExibeSequenciaEntreOrigemEDestino() {
         Grafo g = new Grafo();
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
@@ -334,7 +334,7 @@ class GrafoTest {
     }
 
     @Test
-    @DisplayName("Mostrar caminho avisa quando nao existe rota")
+    @DisplayName("Mostrar caminho avisa quando não existe rota")
     void mostrarCaminhoAvisaQuandoNaoExisteRota() {
         Grafo g = new Grafo();
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
@@ -356,7 +356,7 @@ class GrafoTest {
     }
 
     @Test
-    @DisplayName("Mostrar DOT gera representacao do grafo direcionado")
+    @DisplayName("Mostrar DOT gera representação do grafo direcionado")
     void mostrarDOTGeraRepresentacaoDoGrafoDirecionado() {
         Grafo g = new Grafo();
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "Casa");
@@ -408,7 +408,7 @@ class GrafoTest {
     }
 
     @Test
-    @DisplayName("Mostrar DOT representa laco")
+    @DisplayName("Mostrar DOT representa laço")
     void mostrarDOTRepresentaLaco() {
         Grafo g = new Grafo();
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "Central");
@@ -424,7 +424,7 @@ class GrafoTest {
     }
 
     @Test
-    @DisplayName("Mostrar DOT representa varios vertices e arestas")
+    @DisplayName("Mostrar DOT representa vários vértices e arestas")
     void mostrarDOTRepresentaVariosVerticesEArestas() {
         Grafo g = new Grafo();
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "Inicio");

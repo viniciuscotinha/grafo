@@ -194,7 +194,8 @@ public class Grafo {
         System.out.println(texto);
         return texto;
     }
-
+    // \n represnta quebra de linha
+    // \ representa tab
     public String mostrarDOT() {
         String texto = "digraph Grafo {\n";
 

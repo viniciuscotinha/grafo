@@ -38,12 +38,11 @@ class GrafoTest {
         Grafo g = new Grafo();
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
         Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
-        Aresta a1 = g.adicionarOuAtualizarAresta(v1, v2, 5, "texto1");
+        Aresta a1 = g.adicionarOuAtualizarAresta(v1, v2, "texto1");
         assertAll(
             () -> assertEquals(a1, g.Arestas.get(0)),
             () -> assertEquals(v1, g.Arestas.get(0).origem),
             () -> assertEquals(v2, g.Arestas.get(0).destino),
-            () -> assertEquals(5, g.Arestas.get(0).peso),
             () -> assertEquals("texto1", g.Arestas.get(0).texto)
         );
     }
@@ -54,11 +53,10 @@ class GrafoTest {
         Grafo g = new Grafo();
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
         Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
-        Aresta a1 = g.adicionarOuAtualizarAresta(v1, v2, 5, "texto1");
-        Aresta a2 = g.adicionarOuAtualizarAresta(v1, v2, 6, "texto2");
+        Aresta a1 = g.adicionarOuAtualizarAresta(v1, v2, "texto1");
+        Aresta a2 = g.adicionarOuAtualizarAresta(v1, v2, "texto2");
         assertAll(
             () -> assertEquals(a1, a2),
-            () -> assertEquals(6, g.Arestas.get(0).peso),
             () -> assertEquals("texto2", g.Arestas.get(0).texto)
         );
     }
@@ -69,7 +67,7 @@ class GrafoTest {
         Grafo g = new Grafo();
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
         Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
-        g.adicionarOuAtualizarAresta(v1, v2, 5, "a1");
+        g.adicionarOuAtualizarAresta(v1, v2, "a1");
 
         assertEquals(0, g.contarLacos());
     }
@@ -80,8 +78,8 @@ class GrafoTest {
         Grafo g = new Grafo();
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
         Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
-        g.adicionarOuAtualizarAresta(v1, v1, 5, "a1");
-        g.adicionarOuAtualizarAresta(v1, v2, 3, "a2");
+        g.adicionarOuAtualizarAresta(v1, v1, "a1");
+        g.adicionarOuAtualizarAresta(v1, v2, "a2");
 
         assertEquals(1, g.contarLacos());
     }
@@ -93,9 +91,9 @@ class GrafoTest {
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
         Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
         Vertice v3 = g.adicionarOuAtualizarVertice(3, "texto3");
-        g.adicionarOuAtualizarAresta(v1, v1, 5, "a1");
-        g.adicionarOuAtualizarAresta(v2, v2, 3, "a2");
-        g.adicionarOuAtualizarAresta(v3, v3, 7, "a3");
+        g.adicionarOuAtualizarAresta(v1, v1, "a1");
+        g.adicionarOuAtualizarAresta(v2, v2, "a2");
+        g.adicionarOuAtualizarAresta(v3, v3, "a3");
 
         assertEquals(3, g.contarLacos());
     }
@@ -133,7 +131,7 @@ class GrafoTest {
         Grafo g = new Grafo();
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
         Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
-        g.adicionarOuAtualizarAresta(v1, v2, 1, "a1");
+        g.adicionarOuAtualizarAresta(v1, v2, "a1");
 
         assertFalse(g.ehCompleto());
     }
@@ -144,8 +142,8 @@ class GrafoTest {
         Grafo g = new Grafo();
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
         Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
-        g.adicionarOuAtualizarAresta(v1, v2, 1, "a1");
-        g.adicionarOuAtualizarAresta(v2, v1, 2, "a2");
+        g.adicionarOuAtualizarAresta(v1, v2, "a1");
+        g.adicionarOuAtualizarAresta(v2, v1, "a2");
 
         assertTrue(g.ehCompleto());
     }
@@ -157,11 +155,11 @@ class GrafoTest {
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
         Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
         Vertice v3 = g.adicionarOuAtualizarVertice(3, "texto3");
-        g.adicionarOuAtualizarAresta(v1, v2, 1, "a1");
-        g.adicionarOuAtualizarAresta(v2, v1, 2, "a2");
-        g.adicionarOuAtualizarAresta(v1, v3, 3, "a3");
-        g.adicionarOuAtualizarAresta(v3, v1, 4, "a4");
-        g.adicionarOuAtualizarAresta(v2, v3, 5, "a5");
+        g.adicionarOuAtualizarAresta(v1, v2, "a1");
+        g.adicionarOuAtualizarAresta(v2, v1, "a2");
+        g.adicionarOuAtualizarAresta(v1, v3, "a3");
+        g.adicionarOuAtualizarAresta(v3, v1, "a4");
+        g.adicionarOuAtualizarAresta(v2, v3, "a5");
 
         assertFalse(g.ehCompleto());
     }
@@ -173,9 +171,9 @@ class GrafoTest {
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
         Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
         Vertice v3 = g.adicionarOuAtualizarVertice(3, "texto3");
-        g.adicionarOuAtualizarAresta(v1, v1, 1, "a1");
-        g.adicionarOuAtualizarAresta(v2, v2, 2, "a2");
-        g.adicionarOuAtualizarAresta(v3, v3, 3, "a3");
+        g.adicionarOuAtualizarAresta(v1, v1, "a1");
+        g.adicionarOuAtualizarAresta(v2, v2, "a2");
+        g.adicionarOuAtualizarAresta(v3, v3, "a3");
 
         assertFalse(g.ehCompleto());
     }
@@ -187,12 +185,12 @@ class GrafoTest {
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
         Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
         Vertice v3 = g.adicionarOuAtualizarVertice(3, "texto3");
-        g.adicionarOuAtualizarAresta(v1, v2, 1, "a1");
-        g.adicionarOuAtualizarAresta(v2, v1, 2, "a2");
-        g.adicionarOuAtualizarAresta(v1, v3, 3, "a3");
-        g.adicionarOuAtualizarAresta(v3, v1, 4, "a4");
-        g.adicionarOuAtualizarAresta(v2, v3, 5, "a5");
-        g.adicionarOuAtualizarAresta(v3, v2, 6, "a6");
+        g.adicionarOuAtualizarAresta(v1, v2, "a1");
+        g.adicionarOuAtualizarAresta(v2, v1, "a2");
+        g.adicionarOuAtualizarAresta(v1, v3, "a3");
+        g.adicionarOuAtualizarAresta(v3, v1, "a4");
+        g.adicionarOuAtualizarAresta(v2, v3, "a5");
+        g.adicionarOuAtualizarAresta(v3, v2, "a6");
 
         assertTrue(g.ehCompleto());
     }
@@ -204,11 +202,11 @@ class GrafoTest {
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
         Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
         Vertice v3 = g.adicionarOuAtualizarVertice(3, "texto3");
-        g.adicionarOuAtualizarAresta(v1, v2, 1, "a1");
-        g.adicionarOuAtualizarAresta(v1, v2, 9, "a1 atualizado");
-        g.adicionarOuAtualizarAresta(v2, v1, 2, "a2");
-        g.adicionarOuAtualizarAresta(v1, v3, 3, "a3");
-        g.adicionarOuAtualizarAresta(v3, v1, 4, "a4");
+        g.adicionarOuAtualizarAresta(v1, v2, "a1");
+        g.adicionarOuAtualizarAresta(v1, v2, "a1 atualizado");
+        g.adicionarOuAtualizarAresta(v2, v1, "a2");
+        g.adicionarOuAtualizarAresta(v1, v3, "a3");
+        g.adicionarOuAtualizarAresta(v3, v1, "a4");
 
         assertFalse(g.ehCompleto());
     }
@@ -220,9 +218,9 @@ class GrafoTest {
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
         Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
         Vertice v3 = g.adicionarOuAtualizarVertice(3, "texto3");
-        g.adicionarOuAtualizarAresta(v1, v2, 1, "a1");
-        g.adicionarOuAtualizarAresta(v2, v1, 1, "a2");
-        g.adicionarOuAtualizarAresta(v3, v1, 1, "a3");
+        g.adicionarOuAtualizarAresta(v1, v2, "a1");
+        g.adicionarOuAtualizarAresta(v2, v1, "a2");
+        g.adicionarOuAtualizarAresta(v3, v1, "a3");
 
         assertEquals(3, g.grauVertice(1));
     }
@@ -234,9 +232,9 @@ class GrafoTest {
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
         Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
         Vertice v3 = g.adicionarOuAtualizarVertice(3, "texto3");
-        g.adicionarOuAtualizarAresta(v2, v1, 1, "a1");
-        g.adicionarOuAtualizarAresta(v3, v1, 1, "a2");
-        g.adicionarOuAtualizarAresta(v1, v2, 1, "a3");
+        g.adicionarOuAtualizarAresta(v2, v1, "a1");
+        g.adicionarOuAtualizarAresta(v3, v1, "a2");
+        g.adicionarOuAtualizarAresta(v1, v2, "a3");
 
         assertEquals(2, g.grauEntrada(1));
     }
@@ -248,9 +246,9 @@ class GrafoTest {
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
         Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
         Vertice v3 = g.adicionarOuAtualizarVertice(3, "texto3");
-        g.adicionarOuAtualizarAresta(v1, v2, 1, "a1");
-        g.adicionarOuAtualizarAresta(v1, v3, 1, "a2");
-        g.adicionarOuAtualizarAresta(v2, v1, 1, "a3");
+        g.adicionarOuAtualizarAresta(v1, v2, "a1");
+        g.adicionarOuAtualizarAresta(v1, v3, "a2");
+        g.adicionarOuAtualizarAresta(v2, v1, "a3");
 
         assertEquals(2, g.grauSaida(1));
     }
@@ -261,8 +259,8 @@ class GrafoTest {
         Grafo g = new Grafo();
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
         Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
-        g.adicionarOuAtualizarAresta(v1, v1, 1, "a1");
-        g.adicionarOuAtualizarAresta(v2, v1, 1, "a2");
+        g.adicionarOuAtualizarAresta(v1, v1, "a1");
+        g.adicionarOuAtualizarAresta(v2, v1, "a2");
 
         assertEquals(2, g.grauVertice(1));
     }
@@ -272,7 +270,7 @@ class GrafoTest {
     void lacoContaNaEntradaENaSaida() {
         Grafo g = new Grafo();
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
-        g.adicionarOuAtualizarAresta(v1, v1, 1, "a1");
+        g.adicionarOuAtualizarAresta(v1, v1, "a1");
 
         assertAll(
             () -> assertEquals(1, g.grauEntrada(1)),
@@ -302,10 +300,10 @@ class GrafoTest {
         Vertice v3 = g.adicionarOuAtualizarVertice(3, "texto3");
         Vertice v4 = g.adicionarOuAtualizarVertice(4, "texto4");
         Vertice v5 = g.adicionarOuAtualizarVertice(5, "texto5");
-        g.adicionarOuAtualizarAresta(v1, v2, 1, "a1");
-        g.adicionarOuAtualizarAresta(v3, v1, 1, "a2");
-        g.adicionarOuAtualizarAresta(v1, v4, 1, "a3");
-        g.adicionarOuAtualizarAresta(v5, v1, 1, "a4");
+        g.adicionarOuAtualizarAresta(v1, v2, "a1");
+        g.adicionarOuAtualizarAresta(v3, v1, "a2");
+        g.adicionarOuAtualizarAresta(v1, v4, "a3");
+        g.adicionarOuAtualizarAresta(v5, v1, "a4");
 
         assertEquals(4, g.grauVertice(1));
     }
@@ -318,9 +316,9 @@ class GrafoTest {
         Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
         Vertice v3 = g.adicionarOuAtualizarVertice(3, "texto3");
         Vertice v4 = g.adicionarOuAtualizarVertice(4, "texto4");
-        g.adicionarOuAtualizarAresta(v1, v2, 5, "a1");
-        g.adicionarOuAtualizarAresta(v2, v3, 7, "a2");
-        g.adicionarOuAtualizarAresta(v3, v4, 9, "a3");
+        g.adicionarOuAtualizarAresta(v1, v2, "a1");
+        g.adicionarOuAtualizarAresta(v2, v3, "a2");
+        g.adicionarOuAtualizarAresta(v3, v4, "a3");
 
         ByteArrayOutputStream saida = new ByteArrayOutputStream();
         PrintStream original = System.out;
@@ -332,7 +330,7 @@ class GrafoTest {
             System.setOut(original);
         }
 
-        assertEquals("1 -5-> 2 -7-> 3 -9-> 4", saida.toString().trim());
+        assertEquals("1 -> 2 -> 3 -> 4", saida.toString().trim());
     }
 
     @Test
@@ -342,7 +340,7 @@ class GrafoTest {
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
         Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
         Vertice v3 = g.adicionarOuAtualizarVertice(3, "texto3");
-        g.adicionarOuAtualizarAresta(v1, v2, 1, "a1");
+        g.adicionarOuAtualizarAresta(v1, v2, "a1");
 
         ByteArrayOutputStream saida = new ByteArrayOutputStream();
         PrintStream original = System.out;
@@ -357,51 +355,4 @@ class GrafoTest {
         assertEquals("Nao existe caminho", saida.toString().trim());
     }
 
-    @Test
-    @DisplayName("Mostrar caminho menor peso escolhe rota de menor custo total")
-    void mostrarCaminhoMenorPesoEscolheRotaDeMenorCustoTotal() {
-        Grafo g = new Grafo();
-        Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
-        Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
-        Vertice v3 = g.adicionarOuAtualizarVertice(3, "texto3");
-        Vertice v4 = g.adicionarOuAtualizarVertice(4, "texto4");
-        g.adicionarOuAtualizarAresta(v1, v2, 10, "a1");
-        g.adicionarOuAtualizarAresta(v1, v3, 2, "a2");
-        g.adicionarOuAtualizarAresta(v3, v4, 2, "a3");
-        g.adicionarOuAtualizarAresta(v4, v2, 2, "a4");
-
-        ByteArrayOutputStream saida = new ByteArrayOutputStream();
-        PrintStream original = System.out;
-        System.setOut(new PrintStream(saida));
-
-        try {
-            g.mostrarCaminhoMenorPeso(1, 2);
-        } finally {
-            System.setOut(original);
-        }
-
-        assertEquals("1 -2-> 3 -2-> 4 -2-> 2", saida.toString().trim());
-    }
-
-    @Test
-    @DisplayName("Mostrar caminho menor peso avisa quando nao existe rota")
-    void mostrarCaminhoMenorPesoAvisaQuandoNaoExisteRota() {
-        Grafo g = new Grafo();
-        Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
-        Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
-        Vertice v3 = g.adicionarOuAtualizarVertice(3, "texto3");
-        g.adicionarOuAtualizarAresta(v1, v2, 1, "a1");
-
-        ByteArrayOutputStream saida = new ByteArrayOutputStream();
-        PrintStream original = System.out;
-        System.setOut(new PrintStream(saida));
-
-        try {
-            g.mostrarCaminhoMenorPeso(1, 3);
-        } finally {
-            System.setOut(original);
-        }
-
-        assertEquals("Nao existe caminho", saida.toString().trim());
-    }
 }

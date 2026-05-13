@@ -355,4 +355,24 @@ class GrafoTest {
         assertEquals("Nao existe caminho", saida.toString().trim());
     }
 
+    @Test
+    @DisplayName("Mostrar DOT gera representacao do grafo direcionado")
+    void mostrarDOTGeraRepresentacaoDoGrafoDirecionado() {
+        Grafo g = new Grafo();
+        Vertice v1 = g.adicionarOuAtualizarVertice(1, "Casa");
+        Vertice v2 = g.adicionarOuAtualizarVertice(2, "Escola");
+        g.adicionarOuAtualizarAresta(v1, v2, "caminho");
+
+        String dot = g.mostrarDOT();
+
+        assertEquals(
+            "digraph Grafo {\n" +
+            "    1 [label=\"Casa\"];\n" +
+            "    2 [label=\"Escola\"];\n" +
+            "    1 -> 2 [label=\"caminho\"];\n" +
+            "}",
+            dot
+        );
+    }
+
 }

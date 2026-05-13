@@ -173,8 +173,8 @@ public class Grafo {
         List<Vertice> caminho = new ArrayList<Vertice>();
         Vertice atual = destino;
 
-        // Reconstrucao do caminho:
-        // comecamos no destino e vamos voltando pelos predecessores
+        // Para a reconstrucao do caminho
+        // começamos no destino e vamos voltando pelos anteriores
         // armazenados em "anteriores" ate chegar na origem.
         // Como esse processo acontece de tras para frente, inserimos cada
         // vertice na posicao 0 da lista para montar o caminho na ordem correta.
@@ -195,8 +195,23 @@ public class Grafo {
         return texto;
     }
 
-    public void mostrarDOT() {
+    public String mostrarDOT() {
+        String texto = "digraph Grafo {\n";
 
+        for (int i = 0; i < Vertices.size(); i++) {
+            Vertice vertice = Vertices.get(i);
+            texto += "    " + vertice.id + " [label=\"" + vertice.texto + "\"];\n";
+        }
+
+        for (int i = 0; i < Arestas.size(); i++) {
+            Aresta aresta = Arestas.get(i);
+            texto += "    " + aresta.origem.id + " -> " + aresta.destino.id
+                + " [label=\"" + aresta.texto + "\"];\n";
+        }
+
+        texto += "}";
+        System.out.println(texto);
+        return texto;
     }
 
     public Vertice pegarVertice(long id) {

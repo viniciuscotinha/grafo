@@ -226,8 +226,36 @@ class GrafoTest {
     }
 
     @Test
-    @DisplayName("Laco conta como grau um")
-    void lacoContaComoGrauUm() {
+    @DisplayName("Grau de entrada conta arestas que chegam ao vertice")
+    void grauDeEntradaContaArestasQueChegamAoVertice() {
+        Grafo g = new Grafo();
+        Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
+        Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
+        Vertice v3 = g.adicionarOuAtualizarVertice(3, "texto3");
+        g.adicionarOuAtualizarAresta(v2, v1, 1, "a1");
+        g.adicionarOuAtualizarAresta(v3, v1, 1, "a2");
+        g.adicionarOuAtualizarAresta(v1, v2, 1, "a3");
+
+        assertEquals(2, g.grauEntrada(1));
+    }
+
+    @Test
+    @DisplayName("Grau de saida conta arestas que saem do vertice")
+    void grauDeSaidaContaArestasQueSaemDoVertice() {
+        Grafo g = new Grafo();
+        Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
+        Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
+        Vertice v3 = g.adicionarOuAtualizarVertice(3, "texto3");
+        g.adicionarOuAtualizarAresta(v1, v2, 1, "a1");
+        g.adicionarOuAtualizarAresta(v1, v3, 1, "a2");
+        g.adicionarOuAtualizarAresta(v2, v1, 1, "a3");
+
+        assertEquals(2, g.grauSaida(1));
+    }
+
+    @Test
+    @DisplayName("Laco conta como grau um no grau total")
+    void lacoContaComoGrauUmNoGrauTotal() {
         Grafo g = new Grafo();
         Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
         Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
@@ -238,10 +266,45 @@ class GrafoTest {
     }
 
     @Test
+    @DisplayName("Laco conta na entrada e na saida")
+    void lacoContaNaEntradaENaSaida() {
+        Grafo g = new Grafo();
+        Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
+        g.adicionarOuAtualizarAresta(v1, v1, 1, "a1");
+
+        assertAll(
+            () -> assertEquals(1, g.grauEntrada(1)),
+            () -> assertEquals(1, g.grauSaida(1)),
+            () -> assertEquals(1, g.grauVertice(1))
+        );
+    }
+
+    @Test
     @DisplayName("Vertice inexistente tem grau zero")
     void verticeInexistenteTemGrauZero() {
         Grafo g = new Grafo();
 
-        assertEquals(0, g.grauVertice(99));
+        assertAll(
+            () -> assertEquals(0, g.grauVertice(99)),
+            () -> assertEquals(0, g.grauEntrada(99)),
+            () -> assertEquals(0, g.grauSaida(99))
+        );
+    }
+
+    @Test
+    @DisplayName("Vertice pode ter grau maior que tres")
+    void verticePodeTerGrauMaiorQueTres() {
+        Grafo g = new Grafo();
+        Vertice v1 = g.adicionarOuAtualizarVertice(1, "texto1");
+        Vertice v2 = g.adicionarOuAtualizarVertice(2, "texto2");
+        Vertice v3 = g.adicionarOuAtualizarVertice(3, "texto3");
+        Vertice v4 = g.adicionarOuAtualizarVertice(4, "texto4");
+        Vertice v5 = g.adicionarOuAtualizarVertice(5, "texto5");
+        g.adicionarOuAtualizarAresta(v1, v2, 1, "a1");
+        g.adicionarOuAtualizarAresta(v3, v1, 1, "a2");
+        g.adicionarOuAtualizarAresta(v1, v4, 1, "a3");
+        g.adicionarOuAtualizarAresta(v5, v1, 1, "a4");
+
+        assertEquals(4, g.grauVertice(1));
     }
 }

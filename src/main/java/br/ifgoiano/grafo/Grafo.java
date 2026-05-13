@@ -71,7 +71,39 @@ public class Grafo {
         int grau = 0;
         for (int i = 0; i < Arestas.size(); i++) {
             Aresta aresta = Arestas.get(i);
-            if (aresta.origem == vertice || aresta.destino == vertice) {
+            if (aresta.origem == vertice && aresta.destino == vertice) {
+                grau++;
+            } else if (aresta.origem == vertice || aresta.destino == vertice) {
+                grau++;
+            }
+        }
+        return grau;
+    }
+
+    public int grauEntrada(long id) {
+        Vertice vertice = this.pegarVertice(id);
+        if (vertice == null) {
+            return 0;
+        }
+
+        int grau = 0;
+        for (int i = 0; i < Arestas.size(); i++) {
+            if (Arestas.get(i).destino == vertice) {
+                grau++;
+            }
+        }
+        return grau;
+    }
+
+    public int grauSaida(long id) {
+        Vertice vertice = this.pegarVertice(id);
+        if (vertice == null) {
+            return 0;
+        }
+
+        int grau = 0;
+        for (int i = 0; i < Arestas.size(); i++) {
+            if (Arestas.get(i).origem == vertice) {
                 grau++;
             }
         }

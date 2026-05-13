@@ -184,6 +184,7 @@ public class Grafo {
             atual = anteriores.get(indiceAtual);
         }
 
+        //Montagem do tetxo de saída depois de ter ajustado a ordem
         String texto = "";
         for (int i = 0; i < caminho.size(); i++) {
             texto += caminho.get(i).id;
@@ -194,6 +195,8 @@ public class Grafo {
         System.out.println(texto);
         return texto;
     }
+
+
     // \n represnta quebra de linha
     // \ representa tab
     public String mostrarDOT() {
